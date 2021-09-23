@@ -9,4 +9,4 @@ To generate your own client, go to https://api.strafes.net/documentation.yaml, c
 
 If you'd like a langauge addition into the repository, file an issue, please only do this if you find it relevant (as in, generating clients for a language not most people know AND not using it once added).
 
-If you'd like to contribute to this repository, please see our [contributing file](https://github.com/rsource-open-source/strafes-net-clients/blob/main/CONTRIBUTING.md) or issue [#1](https://github.com/rsource-open-source/strafes-net-clients/issues/1).
+If you'd like to contribute to this repository, please see issue [#1](https://github.com/rsource-open-source/strafes-net-clients/issues/1).
