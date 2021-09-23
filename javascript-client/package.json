@@ -1,0 +1,22 @@
+{
+  "name": "strafes_net_public_api",
+  "version": "1.0.0",
+  "description": "_How_to_useTo_request_an_api_key_open_a_support_request_in_the__issue_tracker_httpsissues_strafes_netclientindex_phptypes3issues__Default_API_request_rate_limits_are_as_follows_100_requests_per_minute_3000_requests_per_hour_Game_IDs1_Bhop2_Surf_Style_IDs1_Autohop2_Scroll3_Sideways4_Half_Sideways5_W_Only6_A_Only7_Backwards",
+  "license": "Unlicense",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha --recursive"
+  },
+  "browser": {
+    "fs": false
+  },
+  "dependencies": {
+    "superagent": "3.7.0",
+    "querystring": "0.2.0"
+  },
+  "devDependencies": {
+    "mocha": "~2.3.4",
+    "sinon": "1.17.3",
+    "expect.js": "~0.3.1"
+  }
+}

@@ -1,0 +1,604 @@
+---
+swagger: "2.0"
+info:
+  description: "### How to use\nTo request an api key open a support request in the\
+    \ [issue tracker](https://issues.strafes.net/client/index.php#/types/3/issues).\n\
+    \n### Default API request rate limits are as follows\n* 100 requests per minute\n\
+    * 3000 requests per hour\n\n### Game IDs\n```\n1 Bhop\n2 Surf\n```\n### Style\
+    \ IDs\n```\n1 Autohop\n2 Scroll\n3 Sideways\n4 Half-Sideways\n5 W-Only\n6 A-Only\n\
+    7 Backwards\n```\n"
+  version: "1.0.0"
+  title: "StrafesNET Public API"
+host: "api.strafes.net"
+basePath: "/v1"
+tags:
+- name: "time"
+  description: "APIs involving time objects."
+- name: "user"
+  description: "APIs involving user objects."
+- name: "rank"
+  description: "APIs involving rank/skill objects."
+- name: "map"
+  description: "APIs involving map objects."
+schemes:
+- "https"
+- "http"
+paths:
+  /user/{userId}:
+    get:
+      tags:
+      - "user"
+      description: "User from id."
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "User ID filter"
+        required: true
+        type: "integer"
+        x-exportParamName: "UserId"
+      responses:
+        "200":
+          description: "Expected response to a valid request"
+          schema:
+            $ref: "#/definitions/User"
+        default:
+          description: "unexpected error"
+          schema: {}
+      security:
+      - api-key: []
+  /time/{timeId}:
+    get:
+      tags:
+      - "time"
+      description: "Time from id."
+      parameters:
+      - name: "timeId"
+        in: "path"
+        description: "Time ID filter"
+        required: true
+        type: "integer"
+        x-exportParamName: "TimeId"
+      responses:
+        "200":
+          description: "Expected response to a valid request"
+          schema:
+            $ref: "#/definitions/Time"
+        default:
+          description: "unexpected error"
+          schema: {}
+      security:
+      - api-key: []
+  /time/{timeId}/rank:
+    get:
+      tags:
+      - "time"
+      description: "Time rank from id."
+      parameters:
+      - name: "timeId"
+        in: "path"
+        description: "Time ID filter"
+        required: true
+        type: "integer"
+        x-exportParamName: "TimeId"
+      responses:
+        "200":
+          description: "Expected response to a valid request"
+          schema:
+            type: "object"
+            properties:
+              Rank:
+                type: "integer"
+        default:
+          description: "unexpected error"
+          schema: {}
+      security:
+      - api-key: []
+  /time/recent:
+    get:
+      tags:
+      - "time"
+      description: "50 recent times."
+      parameters:
+      - name: "date"
+        in: "query"
+        description: "Filter out all times before unix time stamp."
+        required: false
+        type: "integer"
+        x-exportParamName: "Date"
+        x-optionalDataType: "Int32"
+      - name: "style"
+        in: "query"
+        description: "Style ID filter"
+        required: false
+        type: "integer"
+        x-exportParamName: "Style"
+        x-optionalDataType: "Int32"
+      - name: "game"
+        in: "query"
+        description: "Game ID filter"
+        required: false
+        type: "integer"
+        x-exportParamName: "Game"
+        x-optionalDataType: "Int32"
+      - name: "map"
+        in: "query"
+        description: "Map ID filter"
+        required: false
+        type: "integer"
+        x-exportParamName: "Map_"
+        x-optionalDataType: "Int32"
+      responses:
+        "200":
+          description: "Expected response to a valid request"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Time"
+        default:
+          description: "unexpected error"
+          schema: {}
+      security:
+      - api-key: []
+  /time/recent/wr:
+    get:
+      tags:
+      - "time"
+      description: "10 recent world records."
+      parameters:
+      - name: "style"
+        in: "query"
+        description: "Style ID filter"
+        required: true
+        type: "integer"
+        x-exportParamName: "Style"
+      - name: "game"
+        in: "query"
+        description: "Game ID filter"
+        required: true
+        type: "integer"
+        x-exportParamName: "Game"
+      - name: "whitelist"
+        in: "query"
+        description: "Filters for only players on the whitelist"
+        required: false
+        type: "boolean"
+        x-exportParamName: "Whitelist"
+        x-optionalDataType: "Bool"
+      responses:
+        "200":
+          description: "Expected response to a valid request"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Time"
+        default:
+          description: "unexpected error"
+          schema: {}
+      security:
+      - api-key: []
+  /time/map/{mapId}:
+    get:
+      tags:
+      - "time"
+      description: "Time by map id. Sorted in ascending order."
+      parameters:
+      - name: "mapId"
+        in: "path"
+        description: "Map ID filter"
+        required: true
+        type: "integer"
+        x-exportParamName: "MapId"
+      - name: "style"
+        in: "query"
+        description: "Style ID filter"
+        required: false
+        type: "integer"
+        x-exportParamName: "Style"
+        x-optionalDataType: "Int32"
+      - name: "page"
+        in: "query"
+        description: "Page api results. Page size is 200."
+        required: false
+        type: "integer"
+        x-exportParamName: "Page"
+        x-optionalDataType: "Int32"
+      responses:
+        "200":
+          description: "Expected response to a valid request"
+          headers:
+            Pagination-Count:
+              type: "integer"
+              description: "Total pages avaliable."
+            Pagination-Limit:
+              type: "integer"
+              description: "Total results per page."
+            Pagination-Page:
+              type: "integer"
+              description: "Current page number."
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Time"
+        default:
+          description: "unexpected error"
+          schema: {}
+      security:
+      - api-key: []
+  /time/map/{mapId}/wr:
+    get:
+      tags:
+      - "time"
+      description: "Get WR of map."
+      parameters:
+      - name: "mapId"
+        in: "path"
+        description: "Map ID filter"
+        required: true
+        type: "integer"
+        x-exportParamName: "MapId"
+      - name: "style"
+        in: "query"
+        description: "Style ID filter"
+        required: true
+        type: "integer"
+        x-exportParamName: "Style"
+      responses:
+        "200":
+          description: "Expected response to a valid request"
+          schema:
+            $ref: "#/definitions/Time"
+        default:
+          description: "unexpected error"
+          schema: {}
+      security:
+      - api-key: []
+  /time/user/{userId}:
+    get:
+      tags:
+      - "time"
+      description: "Time by user id."
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "User ID filter"
+        required: true
+        type: "integer"
+        x-exportParamName: "UserId"
+      - name: "map"
+        in: "query"
+        description: "Map ID filter"
+        required: false
+        type: "integer"
+        x-exportParamName: "Map_"
+        x-optionalDataType: "Int32"
+      - name: "style"
+        in: "query"
+        description: "Style ID filter"
+        required: false
+        type: "integer"
+        x-exportParamName: "Style"
+        x-optionalDataType: "Int32"
+      - name: "game"
+        in: "query"
+        description: "Game ID filter"
+        required: false
+        type: "integer"
+        x-exportParamName: "Game"
+        x-optionalDataType: "Int32"
+      - name: "page"
+        in: "query"
+        description: "Page api results. Page size is 200."
+        required: false
+        type: "integer"
+        x-exportParamName: "Page"
+        x-optionalDataType: "Int32"
+      responses:
+        "200":
+          description: "Expected response to a valid request"
+          headers:
+            Pagination-Count:
+              type: "integer"
+              description: "Total pages avaliable."
+            Pagination-Limit:
+              type: "integer"
+              description: "Total results per page."
+            Pagination-Page:
+              type: "integer"
+              description: "Current page number."
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Time"
+        default:
+          description: "unexpected error"
+          schema: {}
+      security:
+      - api-key: []
+  /time/user/{userId}/wr:
+    get:
+      tags:
+      - "time"
+      description: "World records by user id."
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "User ID filter"
+        required: true
+        type: "integer"
+        x-exportParamName: "UserId"
+      - name: "game"
+        in: "query"
+        description: "Game ID filter"
+        required: true
+        type: "integer"
+        x-exportParamName: "Game"
+      - name: "style"
+        in: "query"
+        description: "Style ID filter"
+        required: true
+        type: "integer"
+        x-exportParamName: "Style"
+      responses:
+        "200":
+          description: "Expected response to a valid request"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Time"
+        default:
+          description: "unexpected error"
+          schema: {}
+      security:
+      - api-key: []
+  /rank:
+    get:
+      tags:
+      - "rank"
+      description: "Top ranked players, paged at 50 per page."
+      parameters:
+      - name: "style"
+        in: "query"
+        description: "Style ID filter"
+        required: true
+        type: "integer"
+        x-exportParamName: "Style"
+      - name: "game"
+        in: "query"
+        description: "Game ID filter"
+        required: true
+        type: "integer"
+        x-exportParamName: "Game"
+      - name: "page"
+        in: "query"
+        description: "Page api results, Page size is 50."
+        required: false
+        type: "integer"
+        x-exportParamName: "Page"
+        x-optionalDataType: "Int32"
+      responses:
+        "200":
+          description: "Expected response to a valid request"
+          headers:
+            Pagination-Count:
+              type: "integer"
+              description: "Total pages avaliable."
+            Pagination-Limit:
+              type: "integer"
+              description: "Total results per page."
+            Pagination-Page:
+              type: "integer"
+              description: "Current page number."
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Rank"
+        default:
+          description: "unexpected error"
+          schema: {}
+      security:
+      - api-key: []
+  /rank/{userId}:
+    get:
+      tags:
+      - "rank"
+      description: "Get rank of user by their id."
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "User ID filter"
+        required: true
+        type: "integer"
+        x-exportParamName: "UserId"
+      - name: "style"
+        in: "query"
+        description: "Style ID filter"
+        required: true
+        type: "integer"
+        x-exportParamName: "Style"
+      - name: "game"
+        in: "query"
+        description: "Game ID filter"
+        required: true
+        type: "integer"
+        x-exportParamName: "Game"
+      responses:
+        "200":
+          description: "Expected response to a valid request"
+          schema:
+            $ref: "#/definitions/Rank"
+        default:
+          description: "unexpected error"
+          schema: {}
+      security:
+      - api-key: []
+  /map:
+    get:
+      tags:
+      - "map"
+      description: "Get list of maps."
+      parameters:
+      - name: "game"
+        in: "query"
+        description: "Game ID filter"
+        required: false
+        type: "integer"
+        x-exportParamName: "Game"
+        x-optionalDataType: "Int32"
+      - name: "page"
+        in: "query"
+        description: "Page api results. Page size is 200."
+        required: false
+        type: "integer"
+        x-exportParamName: "Page"
+        x-optionalDataType: "Int32"
+      responses:
+        "200":
+          description: "Expected response to a valid request"
+          headers:
+            Pagination-Count:
+              type: "integer"
+              description: "Total pages avaliable."
+            Pagination-Limit:
+              type: "integer"
+              description: "Total results per page."
+            Pagination-Page:
+              type: "integer"
+              description: "Current page number."
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Map"
+        default:
+          description: "unexpected error"
+          schema: {}
+      security:
+      - api-key: []
+  /map/{mapId}:
+    get:
+      tags:
+      - "map"
+      description: "Get map by ID."
+      parameters:
+      - name: "mapId"
+        in: "path"
+        description: "Map ID filter"
+        required: true
+        type: "integer"
+        x-exportParamName: "MapId"
+      responses:
+        "200":
+          description: "Expected response to a valid request"
+          schema:
+            $ref: "#/definitions/Map"
+        default:
+          description: "unexpected error"
+          schema: {}
+      security:
+      - api-key: []
+securityDefinitions:
+  api-key:
+    type: "apiKey"
+    name: "api-key"
+    in: "header"
+definitions:
+  User:
+    type: "object"
+    properties:
+      ID:
+        type: "integer"
+      Username:
+        type: "string"
+      State:
+        type: "integer"
+    example:
+      Username: "Username"
+      State: 6
+      ID: 0
+  Time:
+    type: "object"
+    properties:
+      ID:
+        type: "integer"
+      Time:
+        type: "integer"
+      User:
+        type: "integer"
+      Map:
+        type: "integer"
+      Date:
+        type: "integer"
+      Style:
+        type: "integer"
+      Mode:
+        type: "integer"
+      Game:
+        type: "integer"
+    description: "If a new time is made it will retain the previous time's id."
+    example:
+      User: 1
+      Game: 9
+      Mode: 7
+      Style: 2
+      Time: 6
+      ID: 0
+      Map: 5
+      Date: 5
+  Rank:
+    type: "object"
+    properties:
+      ID:
+        type: "integer"
+      User:
+        type: "integer"
+      Style:
+        type: "integer"
+      Mode:
+        type: "integer"
+      Game:
+        type: "integer"
+      Rank:
+        type: "number"
+      Skill:
+        type: "number"
+      Placement:
+        type: "integer"
+    example:
+      Skill: 7.061401241503109105224211816675961017608642578125
+      User: 6
+      Game: 5
+      Placement: 9
+      Mode: 5
+      Style: 1
+      Rank: 2.3021358869347654518833223846741020679473876953125
+      ID: 0
+  Map:
+    type: "object"
+    properties:
+      ID:
+        type: "integer"
+      DisplayName:
+        type: "string"
+      Creator:
+        type: "string"
+      Game:
+        type: "integer"
+      Date:
+        type: "integer"
+      PlayCount:
+        type: "integer"
+    example:
+      Game: 6
+      PlayCount: 5
+      DisplayName: "DisplayName"
+      ID: 0
+      Creator: "Creator"
+      Date: 1
+  ApiError:
+    type: "object"
+    properties:
+      code:
+        type: "number"
+      message:
+        type: "string"
+      reference:
+        type: "string"

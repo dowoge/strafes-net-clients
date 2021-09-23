@@ -1,0 +1,15 @@
+# ModelMap
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**ID** | **int32** |  | [optional] [default to null]
+**DisplayName** | **string** |  | [optional] [default to null]
+**Creator** | **string** |  | [optional] [default to null]
+**Game** | **int32** |  | [optional] [default to null]
+**Date** | **int32** |  | [optional] [default to null]
+**PlayCount** | **int32** |  | [optional] [default to null]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
