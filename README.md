@@ -1,6 +1,5 @@
 # strafes-net-clients
-
-Generated clients via the Swagger UI Editor.
+Generated clients via the Swagger UI Editor for the StrafesNET API; https://api.strafes.net/
 
 This does not contain all of the supported langauges in the Swagger UI generated clients. For more languages, go to https://editor.swagger.io/.
 
