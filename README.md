@@ -1,6 +1,8 @@
 # strafes-net-clients
 Generated clients via the Swagger UI Editor for the StrafesNET API; https://api.strafes.net/
 
+![GitHub milestone](https://img.shields.io/github/milestones/progress/rsource-open-source/strafes-net-clients/1?label=language%20fixes%20progress&style=for-the-badge)
+
 This does not contain all of the supported langauges in the Swagger UI generated clients. For more languages, go to https://editor.swagger.io/.
 
 To generate your own client, go to https://api.strafes.net/documentation.yaml, copy, and paste into the editor.
