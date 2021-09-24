@@ -12,7 +12,6 @@
 
 import localVarRequest = require("request");
 import http = require("http");
-import Promise = require("bluebird");
 
 let defaultBasePath = "https://api.strafes.net/v1";
 
