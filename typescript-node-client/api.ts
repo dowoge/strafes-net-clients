@@ -12,7 +12,6 @@
 
 import localVarRequest = require("request");
 import http = require("http");
-import Promise = require("bluebird");
 
 let defaultBasePath = "https://api.strafes.net/v1";
 
@@ -523,7 +522,8 @@ export class MapApi {
     game?: number,
     page?: number,
     options: any = {}
-  ): Promise<{ response: http.ClientResponse; body: Array<any> }> {
+  ): Promise<{ response: http.IncomingMessage; body: Array<any> }> {
+    //https://github.com/swagger-api/swagger-codegen/issues/9168
     const localVarPath = this.basePath + "/map";
     let localVarQueryParameters: any = {};
     let localVarHeaderParams: any = (<any>Object).assign(
@@ -570,7 +570,7 @@ export class MapApi {
         localVarRequestOptions.form = localVarFormParams;
       }
     }
-    return new Promise<{ response: http.ClientResponse; body: Array<any> }>(
+    return new Promise<{ response: http.IncomingMessage; body: Array<any> }>(
       (resolve, reject) => {
         localVarRequest(localVarRequestOptions, (error, response, body) => {
           if (error) {
@@ -599,7 +599,7 @@ export class MapApi {
   public mapMapIdGet(
     mapId: number,
     options: any = {}
-  ): Promise<{ response: http.ClientResponse; body: any }> {
+  ): Promise<{ response: http.IncomingMessage; body: any }> {
     const localVarPath =
       this.basePath +
       "/map/{mapId}".replace(
@@ -644,7 +644,7 @@ export class MapApi {
         localVarRequestOptions.form = localVarFormParams;
       }
     }
-    return new Promise<{ response: http.ClientResponse; body: any }>(
+    return new Promise<{ response: http.IncomingMessage; body: any }>(
       (resolve, reject) => {
         localVarRequest(localVarRequestOptions, (error, response, body) => {
           if (error) {
@@ -728,7 +728,7 @@ export class RankApi {
     game: number,
     page?: number,
     options: any = {}
-  ): Promise<{ response: http.ClientResponse; body: Array<Rank> }> {
+  ): Promise<{ response: http.IncomingMessage; body: Array<Rank> }> {
     const localVarPath = this.basePath + "/rank";
     let localVarQueryParameters: any = {};
     let localVarHeaderParams: any = (<any>Object).assign(
@@ -796,7 +796,7 @@ export class RankApi {
         localVarRequestOptions.form = localVarFormParams;
       }
     }
-    return new Promise<{ response: http.ClientResponse; body: Array<Rank> }>(
+    return new Promise<{ response: http.IncomingMessage; body: Array<Rank> }>(
       (resolve, reject) => {
         localVarRequest(localVarRequestOptions, (error, response, body) => {
           if (error) {
@@ -829,7 +829,7 @@ export class RankApi {
     style: number,
     game: number,
     options: any = {}
-  ): Promise<{ response: http.ClientResponse; body: Rank }> {
+  ): Promise<{ response: http.IncomingMessage; body: Rank }> {
     const localVarPath =
       this.basePath +
       "/rank/{userId}".replace(
@@ -902,7 +902,7 @@ export class RankApi {
         localVarRequestOptions.form = localVarFormParams;
       }
     }
-    return new Promise<{ response: http.ClientResponse; body: Rank }>(
+    return new Promise<{ response: http.IncomingMessage; body: Rank }>(
       (resolve, reject) => {
         localVarRequest(localVarRequestOptions, (error, response, body) => {
           if (error) {
@@ -986,7 +986,7 @@ export class TimeApi {
     style?: number,
     page?: number,
     options: any = {}
-  ): Promise<{ response: http.ClientResponse; body: Array<Time> }> {
+  ): Promise<{ response: http.IncomingMessage; body: Array<Time> }> {
     const localVarPath =
       this.basePath +
       "/time/map/{mapId}".replace(
@@ -1045,7 +1045,7 @@ export class TimeApi {
         localVarRequestOptions.form = localVarFormParams;
       }
     }
-    return new Promise<{ response: http.ClientResponse; body: Array<Time> }>(
+    return new Promise<{ response: http.IncomingMessage; body: Array<Time> }>(
       (resolve, reject) => {
         localVarRequest(localVarRequestOptions, (error, response, body) => {
           if (error) {
@@ -1076,7 +1076,7 @@ export class TimeApi {
     mapId: number,
     style: number,
     options: any = {}
-  ): Promise<{ response: http.ClientResponse; body: Time }> {
+  ): Promise<{ response: http.IncomingMessage; body: Time }> {
     const localVarPath =
       this.basePath +
       "/time/map/{mapId}/wr".replace(
@@ -1135,7 +1135,7 @@ export class TimeApi {
         localVarRequestOptions.form = localVarFormParams;
       }
     }
-    return new Promise<{ response: http.ClientResponse; body: Time }>(
+    return new Promise<{ response: http.IncomingMessage; body: Time }>(
       (resolve, reject) => {
         localVarRequest(localVarRequestOptions, (error, response, body) => {
           if (error) {
@@ -1170,7 +1170,7 @@ export class TimeApi {
     game?: number,
     map?: number,
     options: any = {}
-  ): Promise<{ response: http.ClientResponse; body: Array<Time> }> {
+  ): Promise<{ response: http.IncomingMessage; body: Array<Time> }> {
     const localVarPath = this.basePath + "/time/recent";
     let localVarQueryParameters: any = {};
     let localVarHeaderParams: any = (<any>Object).assign(
@@ -1231,7 +1231,7 @@ export class TimeApi {
         localVarRequestOptions.form = localVarFormParams;
       }
     }
-    return new Promise<{ response: http.ClientResponse; body: Array<Time> }>(
+    return new Promise<{ response: http.IncomingMessage; body: Array<Time> }>(
       (resolve, reject) => {
         localVarRequest(localVarRequestOptions, (error, response, body) => {
           if (error) {
@@ -1264,7 +1264,7 @@ export class TimeApi {
     game: number,
     whitelist?: boolean,
     options: any = {}
-  ): Promise<{ response: http.ClientResponse; body: Array<Time> }> {
+  ): Promise<{ response: http.IncomingMessage; body: Array<Time> }> {
     const localVarPath = this.basePath + "/time/recent/wr";
     let localVarQueryParameters: any = {};
     let localVarHeaderParams: any = (<any>Object).assign(
@@ -1332,7 +1332,7 @@ export class TimeApi {
         localVarRequestOptions.form = localVarFormParams;
       }
     }
-    return new Promise<{ response: http.ClientResponse; body: Array<Time> }>(
+    return new Promise<{ response: http.IncomingMessage; body: Array<Time> }>(
       (resolve, reject) => {
         localVarRequest(localVarRequestOptions, (error, response, body) => {
           if (error) {
@@ -1361,7 +1361,7 @@ export class TimeApi {
   public timeTimeIdGet(
     timeId: number,
     options: any = {}
-  ): Promise<{ response: http.ClientResponse; body: Time }> {
+  ): Promise<{ response: http.IncomingMessage; body: Time }> {
     const localVarPath =
       this.basePath +
       "/time/{timeId}".replace(
@@ -1406,7 +1406,7 @@ export class TimeApi {
         localVarRequestOptions.form = localVarFormParams;
       }
     }
-    return new Promise<{ response: http.ClientResponse; body: Time }>(
+    return new Promise<{ response: http.IncomingMessage; body: Time }>(
       (resolve, reject) => {
         localVarRequest(localVarRequestOptions, (error, response, body) => {
           if (error) {
@@ -1435,7 +1435,7 @@ export class TimeApi {
   public timeTimeIdRankGet(
     timeId: number,
     options: any = {}
-  ): Promise<{ response: http.ClientResponse; body: any }> {
+  ): Promise<{ response: http.IncomingMessage; body: any }> {
     const localVarPath =
       this.basePath +
       "/time/{timeId}/rank".replace(
@@ -1480,7 +1480,7 @@ export class TimeApi {
         localVarRequestOptions.form = localVarFormParams;
       }
     }
-    return new Promise<{ response: http.ClientResponse; body: any }>(
+    return new Promise<{ response: http.IncomingMessage; body: any }>(
       (resolve, reject) => {
         localVarRequest(localVarRequestOptions, (error, response, body) => {
           if (error) {
@@ -1517,7 +1517,7 @@ export class TimeApi {
     game?: number,
     page?: number,
     options: any = {}
-  ): Promise<{ response: http.ClientResponse; body: Array<Time> }> {
+  ): Promise<{ response: http.IncomingMessage; body: Array<Time> }> {
     const localVarPath =
       this.basePath +
       "/time/user/{userId}".replace(
@@ -1590,7 +1590,7 @@ export class TimeApi {
         localVarRequestOptions.form = localVarFormParams;
       }
     }
-    return new Promise<{ response: http.ClientResponse; body: Array<Time> }>(
+    return new Promise<{ response: http.IncomingMessage; body: Array<Time> }>(
       (resolve, reject) => {
         localVarRequest(localVarRequestOptions, (error, response, body) => {
           if (error) {
@@ -1623,7 +1623,7 @@ export class TimeApi {
     game: number,
     style: number,
     options: any = {}
-  ): Promise<{ response: http.ClientResponse; body: Array<Time> }> {
+  ): Promise<{ response: http.IncomingMessage; body: Array<Time> }> {
     const localVarPath =
       this.basePath +
       "/time/user/{userId}/wr".replace(
@@ -1696,7 +1696,7 @@ export class TimeApi {
         localVarRequestOptions.form = localVarFormParams;
       }
     }
-    return new Promise<{ response: http.ClientResponse; body: Array<Time> }>(
+    return new Promise<{ response: http.IncomingMessage; body: Array<Time> }>(
       (resolve, reject) => {
         localVarRequest(localVarRequestOptions, (error, response, body) => {
           if (error) {
@@ -1776,7 +1776,7 @@ export class UserApi {
   public userUserIdGet(
     userId: number,
     options: any = {}
-  ): Promise<{ response: http.ClientResponse; body: User }> {
+  ): Promise<{ response: http.IncomingMessage; body: User }> {
     const localVarPath =
       this.basePath +
       "/user/{userId}".replace(
@@ -1821,7 +1821,7 @@ export class UserApi {
         localVarRequestOptions.form = localVarFormParams;
       }
     }
-    return new Promise<{ response: http.ClientResponse; body: User }>(
+    return new Promise<{ response: http.IncomingMessage; body: User }>(
       (resolve, reject) => {
         localVarRequest(localVarRequestOptions, (error, response, body) => {
           if (error) {
