@@ -16,8 +16,8 @@ local dkjson = require "dkjson"
 local basexx = require "basexx"
 
 -- model import
-local swagger-client_Map = require "swagger-client.model.Map"
-local swagger-client_todo_object_mapping = require "swagger-client.model.todo_object_mapping"
+local swagger_client_Map = require "swagger_client.model.Map"
+local swagger_client_todo_object_mapping = require "swagger_client.model.todo_object_mapping"
 
 local map_api = {}
 local map_api_mt = {
@@ -77,7 +77,7 @@ function map_api:map_get(game, page)
 			return nil, err3
 		end
 		for _, ob in ipairs(result) do
-			swagger-client_map.cast(ob)
+			swagger_client_Map.cast(ob)
 		end
 		return result, headers
 	else
@@ -124,7 +124,7 @@ function map_api:map_map_id_get(map_id)
 		if result == nil then
 			return nil, err3
 		end
-		return swagger-client_map.cast(result), headers
+		return swagger_client_Map.cast(result), headers
 	else
 		local body, err, errno2 = stream:get_body_as_string()
 		if not body then

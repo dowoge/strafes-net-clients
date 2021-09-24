@@ -16,8 +16,8 @@ local dkjson = require "dkjson"
 local basexx = require "basexx"
 
 -- model import
-local swagger-client_rank = require "swagger-client.model.rank"
-local swagger-client_todo_object_mapping = require "swagger-client.model.todo_object_mapping"
+local swagger_client_rank = require "swagger-client.model.rank"
+local swagger_client_todo_object_mapping = require "swagger-client.model.todo_object_mapping"
 
 local rank_api = {}
 local rank_api_mt = {
@@ -77,7 +77,7 @@ function rank_api:rank_get(style, game, page)
 			return nil, err3
 		end
 		for _, ob in ipairs(result) do
-			swagger-client_rank.cast(ob)
+			swagger_client_rank.cast(ob)
 		end
 		return result, headers
 	else
@@ -124,7 +124,7 @@ function rank_api:rank_user_id_get(user_id, style, game)
 		if result == nil then
 			return nil, err3
 		end
-		return swagger-client_rank.cast(result), headers
+		return swagger_client_rank.cast(result), headers
 	else
 		local body, err, errno2 = stream:get_body_as_string()
 		if not body then

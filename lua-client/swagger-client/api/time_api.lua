@@ -16,8 +16,8 @@ local dkjson = require "dkjson"
 local basexx = require "basexx"
 
 -- model import
-local swagger-client_todo_object_mapping = require "swagger-client.model.todo_object_mapping"
-local swagger-client_time = require "swagger-client.model.time"
+local swagger_client_todo_object_mapping = require "swagger-client.model.todo_object_mapping"
+local swagger_client_time = require "swagger-client.model.time"
 
 local time_api = {}
 local time_api_mt = {
@@ -77,7 +77,7 @@ function time_api:time_map_map_id_get(map_id, style, page)
 			return nil, err3
 		end
 		for _, ob in ipairs(result) do
-			swagger-client_time.cast(ob)
+			swagger_client_time.cast(ob)
 		end
 		return result, headers
 	else
@@ -124,7 +124,7 @@ function time_api:time_map_map_id_wr_get(map_id, style)
 		if result == nil then
 			return nil, err3
 		end
-		return swagger-client_time.cast(result), headers
+		return swagger_client_time.cast(result), headers
 	else
 		local body, err, errno2 = stream:get_body_as_string()
 		if not body then
@@ -170,7 +170,7 @@ function time_api:time_recent_get(date, style, game, map)
 			return nil, err3
 		end
 		for _, ob in ipairs(result) do
-			swagger-client_time.cast(ob)
+			swagger_client_time.cast(ob)
 		end
 		return result, headers
 	else
@@ -218,7 +218,7 @@ function time_api:time_recent_wr_get(style, game, whitelist)
 			return nil, err3
 		end
 		for _, ob in ipairs(result) do
-			swagger-client_time.cast(ob)
+			swagger_client_time.cast(ob)
 		end
 		return result, headers
 	else
@@ -265,7 +265,7 @@ function time_api:time_time_id_get(time_id)
 		if result == nil then
 			return nil, err3
 		end
-		return swagger-client_time.cast(result), headers
+		return swagger_client_time.cast(result), headers
 	else
 		local body, err, errno2 = stream:get_body_as_string()
 		if not body then
@@ -310,7 +310,7 @@ function time_api:time_time_id_rank_get(time_id)
 		if result == nil then
 			return nil, err3
 		end
-		return swagger-client_TODO_OBJECT_MAPPING.cast(result), headers
+		return swagger_client_todo_object_mapping.cast(result), headers
 	else
 		local body, err, errno2 = stream:get_body_as_string()
 		if not body then
@@ -356,7 +356,7 @@ function time_api:time_user_user_id_get(user_id, map, style, game, page)
 			return nil, err3
 		end
 		for _, ob in ipairs(result) do
-			swagger-client_time.cast(ob)
+			swagger_client_time.cast(ob)
 		end
 		return result, headers
 	else
@@ -404,7 +404,7 @@ function time_api:time_user_user_id_wr_get(user_id, game, style)
 			return nil, err3
 		end
 		for _, ob in ipairs(result) do
-			swagger-client_time.cast(ob)
+			swagger_client_time.cast(ob)
 		end
 		return result, headers
 	else

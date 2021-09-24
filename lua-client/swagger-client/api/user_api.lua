@@ -16,8 +16,8 @@ local dkjson = require "dkjson"
 local basexx = require "basexx"
 
 -- model import
-local swagger-client_todo_object_mapping = require "swagger-client.model.todo_object_mapping"
-local swagger-client_user = require "swagger-client.model.user"
+local swagger_client_todo_object_mapping = require "swagger-client.model.todo_object_mapping"
+local swagger_client_user = require "swagger-client.model.user"
 
 local user_api = {}
 local user_api_mt = {
@@ -76,7 +76,7 @@ function user_api:user_user_id_get(user_id)
 		if result == nil then
 			return nil, err3
 		end
-		return swagger-client_user.cast(result), headers
+		return swagger_client_user.cast(result), headers
 	else
 		local body, err, errno2 = stream:get_body_as_string()
 		if not body then
